@@ -1,0 +1,521 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.13.0/schema.json",
+  "name": "47da1e97696c43ff8916",
+  "position": {
+    "x": 24,
+    "y": 314,
+    "z": 200,
+    "height": 386,
+    "width": 744,
+    "tabOrder": 200
+  },
+  "visual": {
+    "visualType": "deneb7E15AEF80B9E4D4F8E12924291ECE89A",
+    "query": {
+      "queryState": {
+        "dataset": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Dim_Calendario"
+                    }
+                  },
+                  "Property": "AnoMes"
+                }
+              },
+              "queryRef": "Dim_Calendario.AnoMes",
+              "nativeQueryRef": "AnoMes"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Dim_Calendario"
+                    }
+                  },
+                  "Property": "Mês Ano"
+                }
+              },
+              "queryRef": "Dim_Calendario.Mês Ano",
+              "nativeQueryRef": "Mês Ano"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "_Medidas"
+                    }
+                  },
+                  "Property": "Faturamento Total"
+                }
+              },
+              "queryRef": "_Medidas.Faturamento Total",
+              "nativeQueryRef": "Faturamento Total"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "_Medidas"
+                    }
+                  },
+                  "Property": "Consultas Realizadas"
+                }
+              },
+              "queryRef": "_Medidas.Consultas Realizadas",
+              "nativeQueryRef": "Consultas Realizadas"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "_Medidas"
+                    }
+                  },
+                  "Property": "Ticket Médio"
+                }
+              },
+              "queryRef": "_Medidas.Ticket Médio",
+              "nativeQueryRef": "Ticket Médio"
+            }
+          ]
+        }
+      }
+    },
+    "objects": {
+      "vega": [
+        {
+          "properties": {
+            "provider": {
+              "expr": {
+                "Literal": {
+                  "Value": "'vegaLite'"
+                }
+              }
+            },
+            "jsonSpec": {
+              "expr": {
+                "Literal": {
+                  "Value": "'{\n  \"$schema\": \"https://vega.github.io/schema/vega-lite/v5.json\",\n  \"data\": {\n    \"name\": \"dataset\"\n  },\n  \"transform\": [\n    {\n      \"joinaggregate\": [\n        {\n          \"op\": \"mean\",\n          \"field\": \"Faturamento Total\",\n          \"as\": \"media\"\n        },\n        {\n          \"op\": \"max\",\n          \"field\": \"Faturamento Total\",\n          \"as\": \"maximo\"\n        }\n      ]\n    }\n  ],\n  \"layer\": [\n    {\n      \"mark\": {\n        \"type\": \"area\",\n        \"interpolate\": \"monotone\",\n        \"color\": {\n          \"gradient\": \"linear\",\n          \"x1\": 1,\n          \"y1\": 1,\n          \"x2\": 1,\n          \"y2\": 0,\n          \"stops\": [\n            {\n              \"offset\": 0,\n              \"color\": \"rgba(0,203,169,0.02)\"\n            },\n            {\n              \"offset\": 1,\n              \"color\": \"rgba(0,203,169,0.38)\"\n            }\n          ]\n        }\n      },\n      \"encoding\": {\n        \"x\": {\n          \"field\": \"Mês Ano\",\n          \"type\": \"ordinal\",\n          \"sort\": {\n            \"field\": \"AnoMes\",\n            \"op\": \"min\",\n            \"order\": \"ascending\"\n          },\n          \"axis\": {\n            \"title\": null,\n            \"labelAngle\": 0,\n            \"labelOverlap\": \"parity\",\n            \"labelFontSize\": 9\n          }\n        },\n        \"y\": {\n          \"field\": \"Faturamento Total\",\n          \"type\": \"quantitative\",\n          \"axis\": {\n            \"title\": null,\n            \"grid\": true,\n            \"gridColor\": \"#EEF2F6\",\n            \"gridDash\": [\n              3,\n              3\n            ],\n            \"tickCount\": 4,\n            \"formatType\": \"pbiFormat\",\n            \"format\": \"R$ #,0\"\n          },\n          \"scale\": {\n            \"zero\": true\n          }\n        }\n      }\n    },\n    {\n      \"mark\": {\n        \"type\": \"line\",\n        \"interpolate\": \"monotone\",\n        \"color\": \"#00CBA9\",\n        \"strokeWidth\": 2.6\n      },\n      \"encoding\": {\n        \"x\": {\n          \"field\": \"Mês Ano\",\n          \"type\": \"ordinal\",\n          \"sort\": {\n            \"field\": \"AnoMes\",\n            \"op\": \"min\",\n            \"order\": \"ascending\"\n          },\n          \"axis\": {\n            \"title\": null,\n            \"labelAngle\": 0,\n            \"labelOverlap\": \"parity\",\n            \"labelFontSize\": 9\n          }\n        },\n        \"y\": {\n          \"field\": \"Faturamento Total\",\n          \"type\": \"quantitative\"\n        }\n      }\n    },\n    {\n      \"transform\": [\n        {\n          \"filter\": \"datum.AnoMes % 100 == 1\"\n        }\n      ],\n      \"mark\": {\n        \"type\": \"rule\",\n        \"color\": \"#CBD5E1\",\n        \"strokeWidth\": 1\n      },\n      \"encoding\": {\n        \"x\": {\n          \"field\": \"Mês Ano\",\n          \"type\": \"ordinal\",\n          \"sort\": {\n            \"field\": \"AnoMes\",\n            \"op\": \"min\",\n            \"order\": \"ascending\"\n          },\n          \"axis\": {\n            \"title\": null,\n            \"labelAngle\": 0,\n            \"labelOverlap\": \"parity\",\n            \"labelFontSize\": 9\n          }\n        }\n      }\n    },\n    {\n      \"transform\": [\n        {\n          \"filter\": \"datum.AnoMes % 100 == 1\"\n        },\n        {\n          \"calculate\": \"toString(floor(datum.AnoMes / 100))\",\n          \"as\": \"anoTxt\"\n        }\n      ],\n      \"mark\": {\n        \"type\": \"text\",\n        \"align\": \"left\",\n        \"baseline\": \"top\",\n        \"dx\": 5,\n        \"y\": 2,\n        \"fontSize\": 11,\n        \"fontWeight\": 700,\n        \"color\": \"#94A3B8\"\n      },\n      \"encoding\": {\n        \"x\": {\n          \"field\": \"Mês Ano\",\n          \"type\": \"ordinal\",\n          \"sort\": {\n            \"field\": \"AnoMes\",\n            \"op\": \"min\",\n            \"order\": \"ascending\"\n          },\n          \"axis\": {\n            \"title\": null,\n            \"labelAngle\": 0,\n            \"labelOverlap\": \"parity\",\n            \"labelFontSize\": 9\n          }\n        },\n        \"text\": {\n          \"field\": \"anoTxt\"\n        }\n      }\n    },\n    {\n      \"mark\": {\n        \"type\": \"rule\",\n        \"color\": \"#2C3E50\",\n        \"strokeDash\": [\n          4,\n          4\n        ],\n        \"strokeWidth\": 1,\n        \"opacity\": 0.55\n      },\n      \"encoding\": {\n        \"y\": {\n          \"field\": \"media\",\n          \"aggregate\": \"min\",\n          \"type\": \"quantitative\"\n        }\n      }\n    },\n    {\n      \"mark\": {\n        \"type\": \"text\",\n        \"align\": \"right\",\n        \"baseline\": \"bottom\",\n        \"dy\": -4,\n        \"fontSize\": 10,\n        \"color\": \"#2C3E50\",\n        \"opacity\": 0.75,\n        \"x\": {\n          \"expr\": \"width\"\n        }\n      },\n      \"encoding\": {\n        \"y\": {\n          \"field\": \"media\",\n          \"aggregate\": \"min\",\n          \"type\": \"quantitative\"\n        },\n        \"text\": {\n          \"field\": \"media\",\n          \"aggregate\": \"min\",\n          \"type\": \"quantitative\",\n          \"formatType\": \"pbiFormat\",\n          \"format\": \"R$ #,0\"\n        }\n      }\n    },\n    {\n      \"mark\": {\n        \"type\": \"rule\",\n        \"color\": \"#94A3B8\",\n        \"strokeWidth\": 1\n      },\n      \"encoding\": {\n        \"x\": {\n          \"field\": \"Mês Ano\",\n          \"type\": \"ordinal\",\n          \"sort\": {\n            \"field\": \"AnoMes\",\n            \"op\": \"min\",\n            \"order\": \"ascending\"\n          },\n          \"axis\": {\n            \"title\": null,\n            \"labelAngle\": 0,\n            \"labelOverlap\": \"parity\",\n            \"labelFontSize\": 9\n          }\n        },\n        \"opacity\": {\n          \"condition\": {\n            \"param\": \"hover\",\n            \"empty\": false,\n            \"value\": 0.7\n          },\n          \"value\": 0\n        }\n      }\n    },\n    {\n      \"mark\": {\n        \"type\": \"point\",\n        \"filled\": true,\n        \"size\": 80,\n        \"color\": \"#00CBA9\",\n        \"stroke\": \"white\",\n        \"strokeWidth\": 2\n      },\n      \"encoding\": {\n        \"x\": {\n          \"field\": \"Mês Ano\",\n          \"type\": \"ordinal\",\n          \"sort\": {\n            \"field\": \"AnoMes\",\n            \"op\": \"min\",\n            \"order\": \"ascending\"\n          },\n          \"axis\": {\n            \"title\": null,\n            \"labelAngle\": 0,\n            \"labelOverlap\": \"parity\",\n            \"labelFontSize\": 9\n          }\n        },\n        \"y\": {\n          \"field\": \"Faturamento Total\",\n          \"type\": \"quantitative\"\n        },\n        \"opacity\": {\n          \"condition\": {\n            \"param\": \"hover\",\n            \"empty\": false,\n            \"value\": 1\n          },\n          \"value\": 0\n        }\n      }\n    },\n    {\n      \"params\": [\n        {\n          \"name\": \"hover\",\n          \"select\": {\n            \"type\": \"point\",\n            \"encodings\": [\n              \"x\"\n            ],\n            \"on\": \"mouseover\",\n            \"clear\": \"mouseout\"\n          }\n        }\n      ],\n      \"mark\": {\n        \"type\": \"bar\",\n        \"opacity\": 0,\n        \"width\": {\n          \"band\": 1\n        },\n        \"cursor\": \"pointer\",\n        \"tooltip\": true\n      },\n      \"encoding\": {\n        \"x\": {\n          \"field\": \"Mês Ano\",\n          \"type\": \"ordinal\",\n          \"sort\": {\n            \"field\": \"AnoMes\",\n            \"op\": \"min\",\n            \"order\": \"ascending\"\n          },\n          \"axis\": {\n            \"title\": null,\n            \"labelAngle\": 0,\n            \"labelOverlap\": \"parity\",\n            \"labelFontSize\": 9\n          }\n        },\n        \"y\": {\n          \"field\": \"maximo\",\n          \"type\": \"quantitative\"\n        },\n        \"y2\": {\n          \"datum\": 0\n        }\n      }\n    }\n  ]\n}'"
+                }
+              }
+            },
+            "jsonConfig": {
+              "expr": {
+                "Literal": {
+                  "Value": "'{\n  \"autosize\": {\n    \"type\": \"fit\",\n    \"contains\": \"padding\"\n  },\n  \"padding\": {\n    \"left\": 4,\n    \"right\": 8,\n    \"top\": 8,\n    \"bottom\": 4\n  },\n  \"background\": null,\n  \"font\": \"Inter, Segoe UI, Arial, sans-serif\",\n  \"view\": {\n    \"stroke\": \"transparent\"\n  },\n  \"axis\": {\n    \"domain\": false,\n    \"ticks\": false,\n    \"grid\": false,\n    \"labelColor\": \"#64748B\",\n    \"labelFontSize\": 10,\n    \"labelFont\": \"Inter, Segoe UI, Arial, sans-serif\",\n    \"titleColor\": \"#64748B\",\n    \"titleFontSize\": 10,\n    \"titleFontWeight\": \"normal\",\n    \"labelPadding\": 6\n  },\n  \"legend\": {\n    \"labelColor\": \"#64748B\",\n    \"labelFontSize\": 10,\n    \"labelFont\": \"Inter, Segoe UI, Arial, sans-serif\",\n    \"titleColor\": \"#64748B\",\n    \"symbolType\": \"circle\",\n    \"symbolSize\": 80\n  },\n  \"text\": {\n    \"font\": \"Inter, Segoe UI, Arial, sans-serif\",\n    \"color\": \"#2C3E50\"\n  },\n  \"line\": {\n    \"strokeCap\": \"round\"\n  },\n  \"range\": {\n    \"category\": [\n      \"#00CBA9\",\n      \"#2C3E50\",\n      \"#33D6BB\",\n      \"#5D6D7E\",\n      \"#80E5D4\",\n      \"#AAB7C4\"\n    ]\n  }\n}'"
+                }
+              }
+            },
+            "renderMode": {
+              "expr": {
+                "Literal": {
+                  "Value": "'svg'"
+                }
+              }
+            },
+            "enableTooltips": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            },
+            "enableContextMenu": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            },
+            "enableSelection": {
+              "expr": {
+                "Literal": {
+                  "Value": "false"
+                }
+              }
+            },
+            "enableHighlight": {
+              "expr": {
+                "Literal": {
+                  "Value": "false"
+                }
+              }
+            },
+            "version": {
+              "expr": {
+                "Literal": {
+                  "Value": "'6.4.3'"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "stateManagement": [
+        {
+          "properties": {
+            "viewportHeight": {
+              "expr": {
+                "Literal": {
+                  "Value": "319D"
+                }
+              }
+            },
+            "viewportWidth": {
+              "expr": {
+                "Literal": {
+                  "Value": "714D"
+                }
+              }
+            },
+            "supportFieldConfiguration": {
+              "expr": {
+                "Literal": {
+                  "Value": "'{\"AnoMes\":{\"highlight\":false,\"highlightStatus\":false,\"highlightComparator\":false,\"format\":false,\"formatted\":false,\"names\":false},\"Mês Ano\":{\"highlight\":false,\"highlightStatus\":false,\"highlightComparator\":false,\"format\":false,\"formatted\":false,\"names\":false},\"Faturamento Total\":{\"highlight\":false,\"highlightStatus\":false,\"highlightComparator\":false,\"format\":true,\"formatted\":true,\"names\":false},\"Consultas Realizadas\":{\"highlight\":false,\"highlightStatus\":false,\"highlightComparator\":false,\"format\":true,\"formatted\":true,\"names\":false},\"Ticket Médio\":{\"highlight\":false,\"highlightStatus\":false,\"highlightComparator\":false,\"format\":true,\"formatted\":true,\"names\":false}}'"
+                }
+              }
+            },
+            "denebMetaVersion": {
+              "expr": {
+                "Literal": {
+                  "Value": "'2'"
+                }
+              }
+            },
+            "consolidateFieldParameters": {
+              "expr": {
+                "Literal": {
+                  "Value": "false"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "developer": [
+        {
+          "properties": {
+            "version": {
+              "expr": {
+                "Literal": {
+                  "Value": "'2.0.0.0'"
+                }
+              }
+            }
+          }
+        }
+      ]
+    },
+    "visualContainerObjects": {
+      "background": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            },
+            "color": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "Literal": {
+                      "Value": "'#FFFFFF'"
+                    }
+                  }
+                }
+              }
+            },
+            "transparency": {
+              "expr": {
+                "Literal": {
+                  "Value": "6D"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "border": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            },
+            "color": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "Literal": {
+                      "Value": "'#E2E8F0'"
+                    }
+                  }
+                }
+              }
+            },
+            "radius": {
+              "expr": {
+                "Literal": {
+                  "Value": "16D"
+                }
+              }
+            },
+            "width": {
+              "expr": {
+                "Literal": {
+                  "Value": "1D"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "dropShadow": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            },
+            "preset": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Custom'"
+                }
+              }
+            },
+            "color": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "Literal": {
+                      "Value": "'#2C3E50'"
+                    }
+                  }
+                }
+              }
+            },
+            "transparency": {
+              "expr": {
+                "Literal": {
+                  "Value": "92D"
+                }
+              }
+            },
+            "shadowSpread": {
+              "expr": {
+                "Literal": {
+                  "Value": "0D"
+                }
+              }
+            },
+            "shadowBlur": {
+              "expr": {
+                "Literal": {
+                  "Value": "14D"
+                }
+              }
+            },
+            "angle": {
+              "expr": {
+                "Literal": {
+                  "Value": "90D"
+                }
+              }
+            },
+            "shadowDistance": {
+              "expr": {
+                "Literal": {
+                  "Value": "3D"
+                }
+              }
+            },
+            "position": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Outer'"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "padding": [
+        {
+          "properties": {
+            "top": {
+              "expr": {
+                "Literal": {
+                  "Value": "10D"
+                }
+              }
+            },
+            "bottom": {
+              "expr": {
+                "Literal": {
+                  "Value": "8D"
+                }
+              }
+            },
+            "left": {
+              "expr": {
+                "Literal": {
+                  "Value": "14D"
+                }
+              }
+            },
+            "right": {
+              "expr": {
+                "Literal": {
+                  "Value": "14D"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "title": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            },
+            "text": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Evolução do Faturamento Mensal'"
+                }
+              }
+            },
+            "fontColor": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "Literal": {
+                      "Value": "'#2C3E50'"
+                    }
+                  }
+                }
+              }
+            },
+            "fontSize": {
+              "expr": {
+                "Literal": {
+                  "Value": "12D"
+                }
+              }
+            },
+            "bold": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            },
+            "fontFamily": {
+              "expr": {
+                "Literal": {
+                  "Value": "'''Segoe UI Semibold'', wf_segoe-ui_semibold, helvetica, arial, sans-serif'"
+                }
+              }
+            },
+            "alignment": {
+              "expr": {
+                "Literal": {
+                  "Value": "'left'"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "subTitle": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            },
+            "text": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Linha = faturamento do mês · tracejado = média do período · passe o rato para detalhes'"
+                }
+              }
+            },
+            "fontColor": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "Literal": {
+                      "Value": "'#64748B'"
+                    }
+                  }
+                }
+              }
+            },
+            "fontSize": {
+              "expr": {
+                "Literal": {
+                  "Value": "9D"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "visualTooltip": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            },
+            "type": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Canvas'"
+                }
+              }
+            },
+            "section": {
+              "expr": {
+                "Literal": {
+                  "Value": "'6df1162d93dc4f2ea392'"
+                }
+              }
+            }
+          }
+        }
+      ]
+    },
+    "drillFilterOtherVisuals": true
+  }
+}

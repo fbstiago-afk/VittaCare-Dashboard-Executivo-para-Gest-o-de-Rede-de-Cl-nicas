@@ -1,0 +1,54 @@
+table Dim_Pacientes
+	lineageTag: be44b8bc-ad11-41d6-b588-4d8107983b55
+
+	column ID_Paciente
+		dataType: int64
+		isHidden
+		formatString: 0
+		lineageTag: 85899e74-fdda-4154-abe1-d238441d785f
+		summarizeBy: none
+		sourceColumn: ID_Paciente
+
+		annotation SummarizationSetBy = User
+
+	column Paciente
+		dataType: string
+		lineageTag: 12a1d4e1-fc57-45ff-b413-0937a826b285
+		summarizeBy: none
+		sourceColumn: Paciente
+
+		annotation SummarizationSetBy = User
+
+	column 'Plano de Saúde'
+		dataType: string
+		lineageTag: 80c179da-96a1-4e58-894d-7534a4cb1802
+		summarizeBy: none
+		sourceColumn: Plano de Saúde
+
+		annotation SummarizationSetBy = User
+
+	column 'Tipo de Cobertura'
+		dataType: string
+		lineageTag: 8649917f-0597-42b8-b44d-313a219c0a86
+		summarizeBy: none
+		sourceColumn: Tipo de Cobertura
+
+		annotation SummarizationSetBy = User
+
+	partition Dim_Pacientes = m
+		mode: import
+		source =
+				let
+				    Fonte = Excel.Workbook(File.Contents(PastaDados & "VittaCare_Database.xlsx"), null, true),
+				    Aba = Fonte{[Item="Dim_Pacientes",Kind="Sheet"]}[Data],
+				    Cabecalhos = Table.PromoteHeaders(Aba, [PromoteAllScalars=true]),
+				    Tipos = Table.TransformColumnTypes(Cabecalhos, {{"ID_Paciente", Int64.Type}, {"Nome_Paciente", type text}, {"Plano_Saude", type text}}),
+				    Cobertura = Table.AddColumn(Tipos, "Tipo de Cobertura", each if [Plano_Saude] = "Particular" then "Particular" else "Convênio", type text),
+				    Renomear = Table.RenameColumns(Cobertura, {{"Nome_Paciente", "Paciente"}, {"Plano_Saude", "Plano de Saúde"}})
+				in
+				    Renomear
+
+	annotation PBI_NavigationStepName = Navegação
+
+	annotation PBI_ResultType = Table
+

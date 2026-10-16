@@ -1,0 +1,47 @@
+table Dim_Medicos
+	lineageTag: 6670803e-5d99-49fa-882d-433fbaad9b6c
+
+	column ID_Medico
+		dataType: int64
+		isHidden
+		formatString: 0
+		lineageTag: 2440f1df-51e1-444f-b507-7859cb3721e5
+		summarizeBy: none
+		sourceColumn: ID_Medico
+
+		annotation SummarizationSetBy = User
+
+	column Médico
+		dataType: string
+		lineageTag: a87b3fe1-c78f-42e5-abf2-f166cc38356a
+		summarizeBy: none
+		sourceColumn: Médico
+
+		annotation SummarizationSetBy = User
+
+	column ID_Especialidade
+		dataType: int64
+		isHidden
+		formatString: 0
+		lineageTag: 6c6a01ae-62b3-4e66-8a78-beefd815d8aa
+		summarizeBy: none
+		sourceColumn: ID_Especialidade
+
+		annotation SummarizationSetBy = User
+
+	partition Dim_Medicos = m
+		mode: import
+		source =
+				let
+				    Fonte = Excel.Workbook(File.Contents(PastaDados & "VittaCare_Database.xlsx"), null, true),
+				    Aba = Fonte{[Item="Dim_Medicos",Kind="Sheet"]}[Data],
+				    Cabecalhos = Table.PromoteHeaders(Aba, [PromoteAllScalars=true]),
+				    Tipos = Table.TransformColumnTypes(Cabecalhos, {{"ID_Medico", Int64.Type}, {"Nome_Medico", type text}, {"ID_Especialidade", Int64.Type}}),
+				    Renomear = Table.RenameColumns(Tipos, {{"Nome_Medico", "Médico"}})
+				in
+				    Renomear
+
+	annotation PBI_NavigationStepName = Navegação
+
+	annotation PBI_ResultType = Table
+

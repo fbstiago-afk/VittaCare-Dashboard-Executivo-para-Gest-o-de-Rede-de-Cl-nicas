@@ -1,0 +1,11 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/gitIntegration/platformProperties/2.0.0/schema.json",
+  "metadata": {
+    "type": "SemanticModel",
+    "displayName": "VittaCare"
+  },
+  "config": {
+    "version": "2.0",
+    "logicalId": "de215a30-6c8e-4d8c-815b-865315d53124"
+  }
+}

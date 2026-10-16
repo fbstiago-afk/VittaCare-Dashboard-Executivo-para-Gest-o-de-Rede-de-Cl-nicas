@@ -1,0 +1,85 @@
+table Dim_Clinicas
+	lineageTag: 9f2267cd-c644-413a-aa18-ee12435445d7
+
+	column ID_Clinica
+		dataType: int64
+		isHidden
+		formatString: 0
+		lineageTag: 0fb4fc2e-d976-4b07-991b-6e5f147fe769
+		summarizeBy: none
+		sourceColumn: ID_Clinica
+
+		annotation SummarizationSetBy = User
+
+	column 'Nome Unidade'
+		dataType: string
+		lineageTag: 39f93c9a-2de1-405d-937c-180e291d0517
+		summarizeBy: none
+		sourceColumn: Nome Unidade
+
+		annotation SummarizationSetBy = User
+
+	column Cidade
+		dataType: string
+		lineageTag: 0762df55-11f1-4474-b569-c8390dffea43
+		dataCategory: City
+		summarizeBy: none
+		sourceColumn: Cidade
+
+		annotation SummarizationSetBy = User
+
+	column UF
+		dataType: string
+		lineageTag: 98839751-1dff-4f9a-93ec-295794b78a12
+		dataCategory: StateOrProvince
+		summarizeBy: none
+		sourceColumn: UF
+
+		annotation SummarizationSetBy = User
+
+	column 'Capacidade Diária'
+		dataType: int64
+		formatString: #,0
+		lineageTag: d398cfba-c996-4a70-a1d0-5dfe4b26fd8f
+		summarizeBy: none
+		sourceColumn: Capacidade Diária
+
+		annotation SummarizationSetBy = User
+
+	column 'Data Inauguração'
+		dataType: dateTime
+		formatString: dd/MM/yyyy
+		lineageTag: 2b5eed86-a830-4828-81c2-39ed553a4791
+		summarizeBy: none
+		sourceColumn: Data Inauguração
+
+		annotation SummarizationSetBy = User
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column Unidade
+		dataType: string
+		lineageTag: 978ccf67-acd0-457f-b61a-ef5354dbc31c
+		summarizeBy: none
+		sourceColumn: Unidade
+
+		annotation SummarizationSetBy = User
+
+	partition Dim_Clinicas = m
+		mode: import
+		source =
+				let
+				    Fonte = Excel.Workbook(File.Contents(PastaDados & "VittaCare_Database.xlsx"), null, true),
+				    Aba = Fonte{[Item="Dim_Clinicas",Kind="Sheet"]}[Data],
+				    Cabecalhos = Table.PromoteHeaders(Aba, [PromoteAllScalars=true]),
+				    Tipos = Table.TransformColumnTypes(Cabecalhos, {{"ID_Clinica", Int64.Type}, {"Nome_Unidade", type text}, {"Cidade", type text}, {"Estado", type text}, {"Capacidade_Diaria", Int64.Type}}),
+				    DataInaug = Table.TransformColumns(Tipos, {{"Data_Inauguracao", each Date.FromText(Text.Start(Text.From(_), 10), [Format="yyyy-MM-dd"]), type date}}),
+				    UnidadeCurta = Table.AddColumn(DataInaug, "Unidade", each Text.Replace([Nome_Unidade], "VittaCare ", ""), type text),
+				    Renomear = Table.RenameColumns(UnidadeCurta, {{"Nome_Unidade", "Nome Unidade"}, {"Estado", "UF"}, {"Capacidade_Diaria", "Capacidade Diária"}, {"Data_Inauguracao", "Data Inauguração"}})
+				in
+				    Renomear
+
+	annotation PBI_NavigationStepName = Navegação
+
+	annotation PBI_ResultType = Table
+

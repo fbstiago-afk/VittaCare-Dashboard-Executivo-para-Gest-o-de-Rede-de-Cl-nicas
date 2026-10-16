@@ -1,0 +1,20 @@
+relationship 9dddbc18-aa45-4004-bfbc-c2f1aacea402
+	fromColumn: Fato_Atendimentos.ID_Clinica
+	toColumn: Dim_Clinicas.ID_Clinica
+
+relationship f851dfbd-55ed-45f6-8e26-273dd61ccabd
+	fromColumn: Fato_Atendimentos.ID_Medico
+	toColumn: Dim_Medicos.ID_Medico
+
+relationship 03fdbf9d-fc1d-4150-aad7-e7e0c182a449
+	fromColumn: Fato_Atendimentos.ID_Paciente
+	toColumn: Dim_Pacientes.ID_Paciente
+
+relationship 69cea3cd-a4f1-4860-a9c6-7e41ec358874
+	fromColumn: Fato_Atendimentos.ID_Especialidade
+	toColumn: Dim_Especialidades.ID_Especialidade
+
+relationship ea811502-1bce-4873-99d8-abb821acc95d
+	fromColumn: Fato_Atendimentos.'Data Consulta'
+	toColumn: Dim_Calendario.Data
+

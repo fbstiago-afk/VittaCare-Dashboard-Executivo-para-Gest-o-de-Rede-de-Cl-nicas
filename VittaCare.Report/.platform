@@ -1,0 +1,11 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/gitIntegration/platformProperties/2.0.0/schema.json",
+  "metadata": {
+    "type": "Report",
+    "displayName": "VittaCare"
+  },
+  "config": {
+    "version": "2.0",
+    "logicalId": "f218c257-4f77-4f94-987a-9590d35644ea"
+  }
+}

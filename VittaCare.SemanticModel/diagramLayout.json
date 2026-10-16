@@ -1,0 +1,113 @@
+{
+  "version": "1.1.0",
+  "diagrams": [
+    {
+      "ordinal": 0,
+      "scrollPosition": {
+        "x": 0,
+        "y": 0
+      },
+      "nodes": [
+        {
+          "location": {
+            "x": 852.46814892418672,
+            "y": 219.92711709086467
+          },
+          "nodeIndex": "_Medidas",
+          "nodeLineageTag": "9fa73c6f-8a58-4a49-80c6-3b7780c0078b",
+          "size": {
+            "height": 300,
+            "width": 234
+          },
+          "zIndex": 0
+        },
+        {
+          "location": {
+            "x": 50,
+            "y": 296.45232644514635
+          },
+          "nodeIndex": "Dim_Calendario",
+          "nodeLineageTag": "dad86f10-4aa3-4ee1-b998-effafc55d5f2",
+          "size": {
+            "height": 296,
+            "width": 234
+          },
+          "zIndex": 0
+        },
+        {
+          "location": {
+            "x": 618.46814892418661,
+            "y": 250.17373031674526
+          },
+          "nodeIndex": "Dim_Clinicas",
+          "nodeLineageTag": "fe8e535e-b185-482e-9f38-0b6057dfbbf7",
+          "size": {
+            "height": 248,
+            "width": 234
+          },
+          "zIndex": 0
+        },
+        {
+          "location": {
+            "x": 334.23749070383371,
+            "y": 537.85423418172923
+          },
+          "nodeIndex": "Dim_Especialidades",
+          "nodeLineageTag": "f28c95a6-dfe6-4258-9474-053d18eb631a",
+          "size": {
+            "height": 152,
+            "width": 234
+          },
+          "zIndex": 0
+        },
+        {
+          "location": {
+            "x": 496.52975485242933,
+            "y": -26.033461107096514
+          },
+          "nodeIndex": "Dim_Medicos",
+          "nodeLineageTag": "ba4f3b95-1879-49e2-a69b-6cea890ec905",
+          "size": {
+            "height": 152,
+            "width": 234
+          },
+          "zIndex": 0
+        },
+        {
+          "location": {
+            "x": 97.897847517411236,
+            "y": -50
+          },
+          "nodeIndex": "Dim_Pacientes",
+          "nodeLineageTag": "c82d4441-cf44-4211-9ee7-58d8e2338829",
+          "size": {
+            "height": 176,
+            "width": 234
+          },
+          "zIndex": 0
+        },
+        {
+          "location": {
+            "x": 334.230227555595,
+            "y": 176.18515830066133
+          },
+          "nodeIndex": "Fato_Atendimentos",
+          "nodeLineageTag": "f37ddb38-38d8-461b-b568-bff06d1fc5ff",
+          "size": {
+            "height": 300,
+            "width": 234
+          },
+          "zIndex": 0
+        }
+      ],
+      "name": "Todas as tabelas",
+      "zoomValue": 100,
+      "pinKeyFieldsToTop": false,
+      "showExtraHeaderInfo": false,
+      "hideKeyFieldsWhenCollapsed": false,
+      "tablesLocked": false
+    }
+  ],
+  "selectedDiagram": "Todas as tabelas",
+  "defaultDiagram": "Todas as tabelas"
+}

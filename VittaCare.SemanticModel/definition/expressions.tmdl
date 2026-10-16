@@ -1,0 +1,7 @@
+expression PastaDados = "E:\Projetos BI\11 - Vita Care\" meta [IsParameterQuery=true, Type="Text", IsParameterQueryRequired=true]
+	lineageTag: 9dd1d6da-489e-4810-a3a9-d4c91f6b6c06
+
+	annotation PBI_NavigationStepName = Navegação
+
+	annotation PBI_ResultType = Text
+
