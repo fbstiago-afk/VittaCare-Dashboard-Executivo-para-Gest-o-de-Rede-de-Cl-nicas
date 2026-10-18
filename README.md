@@ -2,6 +2,13 @@
 
 # 🏥 VittaCare — Dashboard Executivo para Gestão de Rede de Clínicas
 
+<!-- portfolio-link:start -->
+[![Ver no portfólio](https://img.shields.io/badge/Ver%20o%20painel%20no%20portf%C3%B3lio-Bocardi%20Data-6C3BAA?style=for-the-badge)](https://bocardidata.base44.app/ProjectDetail?id=vittacare-dashboard-executivo)
+
+> 🔗 **Quer ver o visual do Power BI?** Acesse a página do projeto no portfólio: **[https://bocardidata.base44.app/ProjectDetail?id=vittacare-dashboard-executivo](https://bocardidata.base44.app/ProjectDetail?id=vittacare-dashboard-executivo)**
+<!-- portfolio-link:end -->
+
+
 **Dashboard executivo em Power BI (Star Schema) para uma rede de clínicas médicas:**
 faturamento, volume de atendimentos, cancelamentos/no-show e desempenho clínico em 3 telas,
 com cartões em HTML/CSS animado, gráficos **Deneb (Vega-Lite)** e **tooltips personalizados** por visual.
